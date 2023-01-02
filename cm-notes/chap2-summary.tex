@@ -1,0 +1,165 @@
+% \documentclass[10pt,landscape,letterpaper]{article}
+\documentclass[10pt,landscape]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{spverbatim}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{amsmath,amscd}
+\usepackage{tikz-cd}
+% tikz-cd docs https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+\title{Chapter 2 - Summary}
+\begin{document}
+\raggedright
+\footnotesize
+\begin{center}
+     \Large{\textbf{CM summary - chapter 2}} \\
+\end{center}
+\begin{multicols}{2}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\section{Terminology}
+\begin{array}{ll}
+H_n & \text{harmonic number} \\
+    & H_n = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \cdots + \frac{1}{n} \\
+    & H_0 = 0 \\
+\Delta & \text{difference operator} \\ 
+ & \Delta f(x) = f(x+1) - f(x) \\
+E & \text{shift operator} \\
+  & E f(x) = f(x+1) \\
+D & \text{derivative operator} \\
+\sum f(x) \delta x & \text{indefinite sum} \\ 
+\sum_a^b f(x) \delta x & \text{definite sum} \\
+\sum & \text{antidifference operator} \\
+ & \Delta f(n) = g(n) \iff \sum g(n) \delta n = f(n) \\
+ & \Delta f(n) = g(n) \implies \sum_{a}^b g(n) = f(b) - f(a) \\
+ & \Delta f(n) = g(n) \implies \sum_a^b g(x) \delta x = -\sum_b^a g(x) \delta x  \\
+\end{array}
+
+
+\section{Finite calculus analogies with integral calculus}
+{\large
+\everymath{\displaystyle}
+\begin{tikzcd}
+\Delta f(x) \arrow[r,leftrightarrow] \arrow[d, leftrightarrow] & \sum f(x) \delta x  \arrow[d, leftrightarrow] \\
+D f(x) \arrow[r,leftrightarrow] & \int f(x) dx
+\end{tikzcd}
+}
+\\
+\vspace{0.3cm}
+In the above $\delta x = 1$ (\href{https://math.stackexchange.com/a/235691}{reference})
+\section{Falling/Rising factorial identities}
+
+{\large
+\begin{array}{lll}
+x^{\underline{-m}} & = \frac{1}{(x+1)\cdots (x+m)} & \text{for } m > 0\\
+x^{\underline{m}} & = \frac{x!}{(x-n)!} = (x-n+1)(x-n+2)\cdots (x-1) x & \text{for } m > 0\\
+x^{\underline{+2}} & = x(x-1)\\
+x^{\underline{+1}} & = x\\
+x^{\underline{0}} & = 1\\
+x^{\underline{-1}} & = \frac{1}{x+1}\\
+x^{\underline{-2}} & = \frac{1}{(x+1)(x+2)}\\
+\end{array}
+}
+
+\section{Summation by parts}
+
+\begin{array}{ll}
+\text{Difference of a product} & \Delta(u\cdot v) = u\Delta v + E\ v\Delta u\\
+\text{Summation by parts}      & \sum u\cdot \Delta v = u v - \sum E\ v\Delta u\\
+& E \text{ is applied only to the term immediately after it} 
+\end{array}
+
+\vfill\null
+\columnbreak
+\section{Finite difference table}
+% array is already in math mode
+(table 55 in the book)\\
+{\large
+\bgroup
+\def\arraystretch{1.6}
+\begin{array}{|r|l|l|}
+\hline
+\mathbf{f(x)} & \mathbf{\Delta f(x)} & \textbf{note}\\
+\hline
+x^{\underline{m}} & m\cdot x^{\underline{m-1}} & \\ 
+\hline
+H_x & \frac{1}{x+1} = x^{\underline{-1}}& \\ 
+\hline
+c^x & (c-1)c^x & \\ 
+\hline
+\frac{x^{\underline{m+1}}}{m+1} & x^{\underline{m}} & m \neq -1 \\ 
+\hline
+c \cdot u & c\cdot \Delta u & \\ 
+\hline
+u + v & \Delta u + \Delta v & \\ 
+\hline
+\frac{c^x}{c-1} & c^x & \\
+\hline
+2^x & 2^x & \\
+\hline
+\end{array}
+\egroup
+}
+
+\section{Sum/Product properties}
+
+{
+\everymath{\displaystyle}
+\bgroup
+\renewcommand{\arraystretch}{2}
+\begin{array}{|l|l|}
+\hline
+\text{sum property} & \text{product property} \\
+\hline
+\sum_{k\in K} c a_k = c\sum_{k\in K} a_k & \prod_{k\in K} a_k^c = \left(\prod_{k\in K} a_k \right)^c \\
+\hline
+\sum_{k\in K} a_k + b_k = \sum_{k\in K} a_k + \sum_{k\in K} b_k & \prod_{k\in K} a_k b_k = \prod_{k\in K} a_k \cdot \prod_{k\in K} b_k \\
+\hline
+\sum_{\substack{k\in K\\j\in K}} a_{j,k} = \sum_{k\in K}\sum_{j\in J} a_{j,k} & \prod_{\substack{k\in K\\j\in K}} a_{j,k} = \prod_{k\in K}\prod_{j\in J} a_{j,k} \\ 
+\hline
+\sum_{k\in K} a_k = \sum_{k\in K} a_{p(k)} & \prod_{k\in K} a_k = \prod_{k\in K} a_{p(k)} \\
+\hline
+\sum_{k\in K} a_k = \sum_{k} a_k \cdot [k\in K] & \prod_{k\in K} a_k = \prod_{k} a_k^{[k\in K]} \\
+\hline
+\sum_{k\in K} 1 = |K| & \prod_{k\in K} c = c^{|K|}\\
+\hline
+\end{array}
+\egroup
+}
+
+\newpage
+
+\end{multicols}
+\end{document}
