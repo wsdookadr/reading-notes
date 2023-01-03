@@ -91,6 +91,21 @@
   \endgroup
 }
 
+% rising/falling factorial
+\newcommand{\ffac}[1]{%
+  x^{\underline{#1}}%
+}
+\newcommand{\ffact}[2]{% 
+  {#1}^{\underline{#2}}%
+}
+\newcommand{\rfac}[1]{%
+  x^{\overline{#1}}%
+}
+\newcommand{\rfact}[2]{% 
+  {#1}^{\overline{#2}}%
+}
+
+
 % Note: document width x height
 % https://www.overleaf.com/learn/latex/Page_size_and_margins
 % https://www.overleaf.com/learn/latex/Lengths_in_LaTeX
@@ -107,7 +122,9 @@
 \pagestyle{empty}
 % title space before/after and font size
 \titlespacing\section{0pt}{0pt}{-3pt}
+\titlespacing\subsection{0pt}{0pt}{-3pt}
 \titleformat{\section}{\normalfont\fontsize{10}{12}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{9}{12}\bfseries}{\thesection}{1em}{}
 
 \setlength{\columnseprule}{0.4pt}
 \setlength{\columnsep}{0cm}
@@ -158,16 +175,32 @@ D f(x) \arrow[r,leftrightarrow] & \int f(x) dx
 \vspace{0.3cm}
 In the above $\delta x = 1$ (\href{https://math.stackexchange.com/a/235691}{reference})
 \section{Falling/Rising factorial identities}
-{\everymath{\displaystyle}
-\begin{array}{lll}
-x^{\underline{-m}} & = \frac{1}{(x+1)\cdots (x+m)} & \text{for } m > 0\\
-x^{\underline{m}} & = \frac{x!}{(x-n)!} = (x-n+1)(x-n+2)\cdots (x-1) x & \text{for } m > 0\\
-x^{\underline{+2}} & = x(x-1)\\
-x^{\underline{+1}} & = x\\
-x^{\underline{0}} & = 1\\
-x^{\underline{-1}} & = \frac{1}{x+1}\\
-x^{\underline{-2}} & = \frac{1}{(x+1)(x+2)}\\
+
+
+{
+\everymath{\displaystyle}
+Assume $m > 0$
+\begin{multicols}{2}
+\begin{array}{ll}
+\ffac{-m} & = \frac{1}{(x+1)\cdots (x+m)}\\
+\ffac{m} & = \frac{x!}{(x-m)!} = (x-m+1) \cdots (x-1) x\\
+\ffac{+2} & = x(x-1)\\
+\ffac{+1} & = x\\
+\ffac{0} & = 1\\
+\ffac{-1} & = \frac{1}{x+1}\\
+\ffac{-2} & = \frac{1}{(x+1)(x+2)}\\
 \end{array}
+\vfill\null
+\columnbreak
+\begin{array}{ll}
+\ffac{m+1} & = \ffac{m} \ffact{(x-m)}{n} \text{  (law of exponents)}\\
+\rfac{-m} & = \frac{1}{\rfact{(x-m)}{m}} = \frac{1}{\ffact{(x-1)}{m}} \\
+\ffact{(x+y)}{m} & \text{ analog of binomial theorem applies}\\
+\end{array}
+\begin{array}{ll}
+
+\end{array}
+\end{multicols}
 }
 
 \section{Summation properties}
@@ -188,11 +221,11 @@ $\sum_{j=1}^{n} \sum_{k=j}^n a_{j,k} = \sum_{1\leq j\leq k\leq n} a_{j,k} =\sum_
 
 \section{Iverson bracket properties}
 
-$\UR + \LR = \SBL - \DIAG$
+$\URF + \LRF = \SBL + \DIAG$
 
 $ [1\leq j\leq k\leq n] + [1\leq k\leq j \leq n] = [1\leq j,k \leq n] + [1\leq j=k \leq n] $
 
-$\URF + \LRF = \SBL + \DIAG$
+$\UR + \LR = \SBL - \DIAG$
 
 $ [1\leq j < k \leq n] + [1\leq k < j \leq n] = [1\leq j,k\leq n] - [1\leq j=k\leq n] $
 
@@ -215,13 +248,13 @@ $ [1\leq j < k \leq n] + [1\leq k < j \leq n] = [1\leq j,k\leq n] - [1\leq j=k\l
 \hline
 \mathbf{f(x)} & \mathbf{\Delta f(x)} & \textbf{note}\\
 \hline
-x^{\underline{m}} & m\cdot x^{\underline{m-1}} & \\ 
+\ffac{m} & m\cdot \ffac{m-1} & \\ 
 \hline
-H_x & \frac{1}{x+1} = x^{\underline{-1}}& \\ 
+H_x & \frac{1}{x+1} = \ffac{-1}& \\ 
 \hline
 c^x & (c-1)c^x & \\ 
 \hline
-\frac{x^{\underline{m+1}}}{m+1} & x^{\underline{m}} & m \neq -1 \\ 
+\frac{\ffac{m+1}}{m+1} & \ffac{m} & m \neq -1 \\ 
 \hline
 c \cdot u & c\cdot \Delta u & \\ 
 \hline
@@ -249,7 +282,7 @@ u + v & \Delta u + \Delta v & \\
 \hline
 \sum_{k\in K} a_k + b_k = \sum_{k\in K} a_k + \sum_{k\in K} b_k & \prod_{k\in K} a_k b_k = \prod_{k\in K} a_k \cdot \prod_{k\in K} b_k & \text{associative law(2.16)} \\
 \hline
-\sum_{\substack{j\in J\\k\in K}} a_j b_k = \left(\sum_{j\in J} a_j\right) \cdot \left(\sum_{k\in K} a_k \right) & & \text{general distributive law (2.28)}\\
+\sum_{\substack{j\in J\\k\in K}} a_j b_k = \left(\sum_{j\in J} a_j\right) \cdot \left(\sum_{k\in K} b_k \right) & & \text{general distributive law (2.28)}\\
 \hline
 \sum_{k\in K} a_k = \sum_{k\in K} a_{p(k)} & \prod_{k\in K} a_k = \prod_{k\in K} a_{p(k)} & \text{commutative law(2.17)} \\
 \hline
@@ -261,6 +294,62 @@ u + v & \Delta u + \Delta v & \\
 \hline
 \end{array}
 \egroup
+}
+
+\vfill\null
+\columnbreak
+
+\section{General techniques for recurrences or sums}
+\subsection{Summation factor}
+{\everymath{\displaystyle}
+Recurrence type: $a_n T_n = b_n T_{n-1} + c_n$
+
+Step 1. Multiply both sides by $s_n=\frac{a_{n-1}a_{n-2}\cdots a_1}{b_n b_{n-1}\cdots b_2}$
+
+Note: $s_n b_n = s_{n-1}a_{n-1}$
+
+Step 2. Build $S_n = S_{n-1} + s_n c_n$
+
+Step 3. $S_n = s_0 a_0 T_0 + \sum{k=1}^n s_k c_k = s_1b_1T_0 \sum_{k=1}^n s_k c_k$
+
+Step 4. Closed form: $T_n = \frac{1}{s_n a_n}\left(s_1b_1T_0 + \sum_{k=1}^n s_k c_k\right)$
+}
+
+\subsection{Repertoire method}
+{\everymath{\displaystyle}
+We have a recurrence $R_n$ with an initial condition and a recurrence relation.
+
+Step 1. Write the general form $R_n = A(n)\alpha + B(n) \beta + C(n) \delta + D(n) \gamma$
+
+Step 2. Set $R_n$ to be $1,n,n^2,n^3,\dots$ (the repertoire) successively and determine $\alpha,\beta,\delta,\gamma$ for each.
+
+Step 3. Build a system of linear equations in $A(n),B(n),C(n),D(n)$ where the right-hand side will be the functions from the repertoire. 
+
+Step 4. Solve the system to determine the functions $A,B,C,D$ and thereby finding a closed form for $R_n$
+
+}
+
+\subsection{Perturbation method/scheme}
+{\everymath{\displaystyle}
+
+Step 1. Write the sum $S_{n+1} = \sum_{0\leq k \leq n+1} a_k $ in two ways:
+
+$S_{n+1} = S_n + a_{n+1}$
+
+$S_{n+1} = a_0 + \sum_{1\leq k \leq n+1} a_k = a_0 + \sum_{0\leq k \leq n} a_{k+1}$
+
+Step 2. Make the last sum look like $S_n$.
+
+Step 3. Use these two expressions to find a closed form for $S_n$
+
+}
+
+\subsection{Replace the sum by integrals}
+{\everymath{\displaystyle}
+
+Step 1. Replace the sum $S_n=\sum_{k=1}^n f(k)$ by an integral $I_n=\int_{0}^n f(x) dx$, solve the integral.
+
+Step 2. Look at the error in the approximation $E_n = S_n - I_n$ , find a closed form for it which leads to a closed form for $S_n$. 
 }
 
 \newpage
