@@ -1,5 +1,4 @@
-% \documentclass[10pt,landscape,letterpaper]{article}
-\documentclass[10pt,landscape]{article}
+\documentclass[10pt]{article}
 \usepackage{amssymb,amsmath,amsthm,amsfonts}
 \usepackage{multicol,multirow}
 \usepackage{spverbatim}
@@ -9,33 +8,117 @@
 \usepackage{ifthen}
 \usepackage{amsmath,amscd}
 \usepackage{tikz-cd}
-% tikz-cd docs https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf
+%Note: tikz-cd docs https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/tikz-cd/tikz-cd-doc.pdf
+
+%Note: to break to the next column do
+%\vfill\null
+%\columnbreak
 \usepackage[landscape]{geometry}
 \usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
-\ifthenelse{\lengthtest { \paperwidth = 11in}}
-    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
-	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
-		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-	}
+\usepackage{titlesec}
+
+\usepackage{pict2e}
+
+% Note: http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/pict2e/pict2e.pdf
+%
+% Description: Custom symbols designed for compact interpretation of identities
+%
+% Lower triangle filled or empty
+% Upper triangle filled or empty
+% Filled square
+% Diagonal
+
+\DeclareRobustCommand{\LR}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polyline(0,1.7)(1.7,0)(0,0)(0,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\LRF}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polygon*(0,1.7)(1.7,0)(0,0)(0,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\UR}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polyline(0,1.7)(1.7,1.7)(1.7,0)(0,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\URF}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polygon*(0,1.7)(1.7,1.7)(1.7,0)(0,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\SWH}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polygon(0,0)(1.7,0)(1.7,1.7)(0,1.7)(0,0)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\SBL}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polygon*(0,0)(1.7,0)(1.7,1.7)(0,1.7)(0,0)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\DIAG}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polyline(0,0)(1.7,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+% Note: document width x height
+% https://www.overleaf.com/learn/latex/Page_size_and_margins
+% https://www.overleaf.com/learn/latex/Lengths_in_LaTeX
+\paperwidth = 17.6in
+\paperheight = 8in
+\topmargin = -1.1in
+\setlength{\textheight}{0.95 \paperheight}
+\setlength{\linewidth}{0.9 \paperwidth}
+\setlength{\textwidth}{0.9 \paperwidth}
+
+\headheight = 0pt
+\voffset = 0pt
+\hoffset = -1.3in
 \pagestyle{empty}
+% title space before/after and font size
+\titlespacing\section{0pt}{0pt}{-3pt}
+\titleformat{\section}{\normalfont\fontsize{10}{12}\bfseries}{\thesection}{1em}{}
+
+\setlength{\columnseprule}{0.4pt}
+\setlength{\columnsep}{0cm}
 \makeatletter
-\renewcommand{\section}{\@startsection{section}{1}{0mm}%
-                                {-1ex plus -.5ex minus -.2ex}%
-                                {0.5ex plus .2ex}%x
-                                {\normalfont\large\bfseries}}
-\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
-                                {-1explus -.5ex minus -.2ex}%
-                                {0.5ex plus .2ex}%
-                                {\normalfont\normalsize\bfseries}}
-\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
-                                {-1ex plus -.5ex minus -.2ex}%
-                                {1ex plus .2ex}%
-                                {\normalfont\small\bfseries}}
 \makeatother
 \setcounter{secnumdepth}{0}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt plus 0.5ex}
+\setlength{\parskip}{0pt}
+
+
+
 \title{Chapter 2 - Summary}
 \begin{document}
 \raggedright
@@ -43,12 +126,8 @@
 \begin{center}
      \Large{\textbf{CM summary - chapter 2}} \\
 \end{center}
-\begin{multicols}{2}
-\setlength{\premulticols}{1pt}
-\setlength{\postmulticols}{1pt}
-\setlength{\multicolsep}{1pt}
-\setlength{\columnsep}{2pt}
 
+\begin{multicols}{3}
 \section{Terminology}
 \begin{array}{ll}
 H_n & \text{harmonic number} \\
@@ -67,9 +146,8 @@ D & \text{derivative operator} \\
  & \Delta f(n) = g(n) \implies \sum_a^b g(x) \delta x = -\sum_b^a g(x) \delta x  \\
 \end{array}
 
-
 \section{Finite calculus analogies with integral calculus}
-{\large
+{
 \everymath{\displaystyle}
 \begin{tikzcd}
 \Delta f(x) \arrow[r,leftrightarrow] \arrow[d, leftrightarrow] & \sum f(x) \delta x  \arrow[d, leftrightarrow] \\
@@ -80,8 +158,7 @@ D f(x) \arrow[r,leftrightarrow] & \int f(x) dx
 \vspace{0.3cm}
 In the above $\delta x = 1$ (\href{https://math.stackexchange.com/a/235691}{reference})
 \section{Falling/Rising factorial identities}
-
-{\large
+{\everymath{\displaystyle}
 \begin{array}{lll}
 x^{\underline{-m}} & = \frac{1}{(x+1)\cdots (x+m)} & \text{for } m > 0\\
 x^{\underline{m}} & = \frac{x!}{(x-n)!} = (x-n+1)(x-n+2)\cdots (x-1) x & \text{for } m > 0\\
@@ -93,20 +170,45 @@ x^{\underline{-2}} & = \frac{1}{(x+1)(x+2)}\\
 \end{array}
 }
 
-\section{Summation by parts}
+\section{Summation properties}
+{\everymath{\displaystyle}
 
+Double-counting: $[k \in K] + [k\in K'] = [k\in K \cap K'] + [k\in K \cup K']$\\
+Interchanging order of summation: $\sum_{j} \sum_{k} a_{j,k} [P(j,k)] = \sum_{P(j,k)} a_{j,k} = \sum_{k} \sum_{j} a_{j,k} [P(j,k)]$
+Interchanging summation order \textbf{vanilla version}: $\sum_{j\in J} \sum_{k\in K} a_{j,k} = \sum_{\substack{j\in J\\k\in K}} a_{j,k} = \sum_{k\in K} \sum_{j\in J} a_{j,k}$\\
+Interchanging summation order \textbf{rocky road version}: $\sum_{j\in J} \sum_{k\in K(j)} a_{j,k} = \sum_{k\in K'} \sum_{j\in J'(k)} a_{j,k}$\\
+where the following holds: $[j\in J][k\in K(j)] = [k\in K'][j\in J'(k)]$\\
+Application of rocky road: 
+$[1\leq j \leq n] [j\leq k \leq n] = [1\leq j \leq k \leq n] = [1 \leq k \leq n] [1\leq j \leq k]$\\
+$\sum_{j=1}^{n} \sum_{k=j}^n a_{j,k} = \sum_{1\leq j\leq k\leq n} a_{j,k} =\sum_{k=1}^{n} \sum_{j=1}^k a_{j,k}$
+}
+
+\vfill\null
+\columnbreak
+
+\section{Iverson bracket properties}
+
+$\UR + \LR = \SBL - \DIAG$
+
+$ [1\leq j\leq k\leq n] + [1\leq k\leq j \leq n] = [1\leq j,k \leq n] + [1\leq j=k \leq n] $
+
+$\URF + \LRF = \SBL + \DIAG$
+
+$ [1\leq j < k \leq n] + [1\leq k < j \leq n] = [1\leq j,k\leq n] - [1\leq j=k\leq n] $
+
+\section{Summation by parts}
+{\everymath{\displaystyle}
 \begin{array}{ll}
 \text{Difference of a product} & \Delta(u\cdot v) = u\Delta v + E\ v\Delta u\\
 \text{Summation by parts}      & \sum u\cdot \Delta v = u v - \sum E\ v\Delta u\\
 & E \text{ is applied only to the term immediately after it} 
 \end{array}
+}
 
-\vfill\null
-\columnbreak
 \section{Finite difference table}
 % array is already in math mode
-(table 55 in the book)\\
-{\large
+{
+\everymath{\displaystyle}
 \bgroup
 \def\arraystretch{1.6}
 \begin{array}{|r|l|l|}
@@ -132,28 +234,30 @@ u + v & \Delta u + \Delta v & \\
 \end{array}
 \egroup
 }
-
+\\
+(see table 55 in the book)
 \section{Sum/Product properties}
-
 {
 \everymath{\displaystyle}
 \bgroup
 \renewcommand{\arraystretch}{2}
-\begin{array}{|l|l|}
+\begin{array}{|l|l|l|}
 \hline
-\text{sum property} & \text{product property} \\
+\text{sum law} & \text{product law} & \text{name}\\
 \hline
-\sum_{k\in K} c a_k = c\sum_{k\in K} a_k & \prod_{k\in K} a_k^c = \left(\prod_{k\in K} a_k \right)^c \\
+\sum_{k\in K} c a_k = c\sum_{k\in K} a_k & \prod_{k\in K} a_k^c = \left(\prod_{k\in K} a_k \right)^c & \text{distributive law (2.15)}\\
 \hline
-\sum_{k\in K} a_k + b_k = \sum_{k\in K} a_k + \sum_{k\in K} b_k & \prod_{k\in K} a_k b_k = \prod_{k\in K} a_k \cdot \prod_{k\in K} b_k \\
+\sum_{k\in K} a_k + b_k = \sum_{k\in K} a_k + \sum_{k\in K} b_k & \prod_{k\in K} a_k b_k = \prod_{k\in K} a_k \cdot \prod_{k\in K} b_k & \text{associative law(2.16)} \\
 \hline
-\sum_{\substack{k\in K\\j\in K}} a_{j,k} = \sum_{k\in K}\sum_{j\in J} a_{j,k} & \prod_{\substack{k\in K\\j\in K}} a_{j,k} = \prod_{k\in K}\prod_{j\in J} a_{j,k} \\ 
+\sum_{\substack{j\in J\\k\in K}} a_j b_k = \left(\sum_{j\in J} a_j\right) \cdot \left(\sum_{k\in K} a_k \right) & & \text{general distributive law (2.28)}\\
 \hline
-\sum_{k\in K} a_k = \sum_{k\in K} a_{p(k)} & \prod_{k\in K} a_k = \prod_{k\in K} a_{p(k)} \\
+\sum_{k\in K} a_k = \sum_{k\in K} a_{p(k)} & \prod_{k\in K} a_k = \prod_{k\in K} a_{p(k)} & \text{commutative law(2.17)} \\
 \hline
-\sum_{k\in K} a_k = \sum_{k} a_k \cdot [k\in K] & \prod_{k\in K} a_k = \prod_{k} a_k^{[k\in K]} \\
+\sum_{\substack{k\in K\\j\in J}} a_{j,k} = \sum_{k\in K}\sum_{j\in J} a_{j,k} & \prod_{\substack{k\in K\\j\in J}} a_{j,k} = \prod_{k\in K}\prod_{j\in J} a_{j,k} & \\ 
 \hline
-\sum_{k\in K} 1 = |K| & \prod_{k\in K} c = c^{|K|}\\
+\sum_{k\in K} a_k = \sum_{k} a_k \cdot [k\in K] & \prod_{k\in K} a_k = \prod_{k} a_k^{[k\in K]} & \\
+\hline
+\sum_{k\in K} 1 = |K| & \prod_{k\in K} c = c^{|K|} & \\
 \hline
 \end{array}
 \egroup
