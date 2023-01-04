@@ -86,7 +86,7 @@
   \begingroup
   \setlength{\unitlength}{1ex}%
   \begin{picture}(2.5,2.5)
-  \polyline(0,0)(1.7,1.7)
+  \polyline(0,1.7)(1.7,0)
   \end{picture}%
   \endgroup
 }
@@ -114,11 +114,12 @@
 \topmargin = -1.1in
 \setlength{\textheight}{0.95 \paperheight}
 \setlength{\linewidth}{0.9 \paperwidth}
-\setlength{\textwidth}{0.9 \paperwidth}
+\setlength{\textwidth}{0.95 \paperwidth}
 
 \headheight = 0pt
 \voffset = 0pt
-\hoffset = -1.3in
+\hoffset = -1.5in
+\marginparwidth = 0pt
 \pagestyle{empty}
 % title space before/after and font size
 \titlespacing\section{0pt}{0pt}{-3pt}
@@ -183,7 +184,7 @@ Assume $m > 0$
 \begin{multicols}{2}
 \begin{array}{ll}
 \ffac{-m} & = \frac{1}{(x+1)\cdots (x+m)}\\
-\ffac{m} & = \frac{x!}{(x-m)!} = (x-m+1) \cdots (x-1) x\\
+\ffac{m} & = (x-m+1) \cdots (x-1) x\\
 \ffac{+2} & = x(x-1)\\
 \ffac{+1} & = x\\
 \ffac{0} & = 1\\
@@ -192,10 +193,13 @@ Assume $m > 0$
 \end{array}
 \vfill\null
 \columnbreak
-\begin{array}{ll}
-\ffac{m+1} & = \ffac{m} \ffact{(x-m)}{n} \text{  (law of exponents)}\\
-\rfac{-m} & = \frac{1}{\rfact{(x-m)}{m}} = \frac{1}{\ffact{(x-1)}{m}} \\
-\ffact{(x+y)}{m} & \text{ analog of binomial theorem applies}\\
+\begin{array}{l}
+\ffac{m+1} = \ffac{m} \ffact{(x-m)}{n} \text{  (law of exponents)}\\
+\rfac{-m} = \frac{1}{\rfact{(x-m)}{m}} = \frac{1}{\ffact{(x-1)}{m}} \\
+\ffact{(x+y)}{m} \text{ analog of binomial theorem applies}\\
+\frac{\ffact{x}{m}}{\ffact{(x-n)}{m}} = \frac{\ffact{x}{n}}{\ffact{(x-m)}{n}} \\
+\rfact{x}{m} = (-1)^m\ffact{(-x)}{m} = \ffact{(x+m-1)}{m} = \frac{1}{\ffact{(x-1)}{-m}}\\
+\ffact{x}{m} = (-1)^m\rfact{(-x)}{m} = \rfact{(x-m+1)}{m} = \frac{1}{\rfact{(x+1)}{-m}}\\
 \end{array}
 \begin{array}{ll}
 
@@ -263,6 +267,8 @@ u + v & \Delta u + \Delta v & \\
 \frac{c^x}{c-1} & c^x & \\
 \hline
 2^x & 2^x & \\
+\hline
+\ffact{c}{x} & \frac{\ffact{c}{x+2}}{c-x} & \\
 \hline
 \end{array}
 \egroup
@@ -332,7 +338,7 @@ Step 4. Solve the system to determine the functions $A,B,C,D$ and thereby findin
 \subsection{Perturbation method/scheme}
 {\everymath{\displaystyle}
 
-Step 1. Write the sum $S_{n+1} = \sum_{0\leq k \leq n+1} a_k $ in two ways:
+Step 1. Rewrite the sum $S_{n+1} = \sum_{0\leq k \leq n+1} a_k $ by splitting off the last and first term:
 
 $S_{n+1} = S_n + a_{n+1}$
 
