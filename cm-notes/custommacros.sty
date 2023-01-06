@@ -1,0 +1,100 @@
+\ProvidesPackage{custommacros}[various symbols and macros]
+\usepackage{pict2e}
+\usepackage{mathabx}
+\usepackage{bm}
+% Note: http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/pict2e/pict2e.pdf
+%
+% Description: Custom symbols designed for compact interpretation of identities
+%
+% Lower triangle filled or empty
+% Upper triangle filled or empty
+% Filled square
+% Diagonal
+
+\DeclareRobustCommand{\LR}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polyline(0,1.7)(1.7,0)(0,0)(0,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\LRF}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polygon*(0,1.7)(1.7,0)(0,0)(0,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\UR}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polyline(0,1.7)(1.7,1.7)(1.7,0)(0,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\URF}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polygon*(0,1.7)(1.7,1.7)(1.7,0)(0,1.7)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\SWH}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polygon(0,0)(1.7,0)(1.7,1.7)(0,1.7)(0,0)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\SBL}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polygon*(0,0)(1.7,0)(1.7,1.7)(0,1.7)(0,0)
+  \end{picture}%
+  \endgroup
+}
+
+\DeclareRobustCommand{\DIAG}{%
+  \begingroup
+  \setlength{\unitlength}{1ex}%
+  \begin{picture}(2.5,2.5)
+  \polyline(0,1.7)(1.7,0)
+  \end{picture}%
+  \endgroup
+}
+
+% floor and ceil
+\newcommand{\floor}[1]{%
+	\left\lfloor {#1} \right\rfloor%
+}
+\newcommand{\ceil}[1]{%
+	\left\lceil {#1} \right\rceil%
+}
+
+% rising/falling factorial
+\newcommand{\ffac}[1]{%
+  x^{\underline{#1}}%
+}
+\newcommand{\ffact}[2]{% 
+  {#1}^{\underline{#2}}%
+}
+\newcommand{\rfac}[1]{%
+  x^{\overline{#1}}%
+}
+\newcommand{\rfact}[2]{% 
+  {#1}^{\overline{#2}}%
+}
+\newcommand{\monus}[2]{%
+  {#1}\bm{\dotdiv}{#2}%
+}

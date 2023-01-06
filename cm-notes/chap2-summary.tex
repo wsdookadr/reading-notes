@@ -16,95 +16,7 @@
 \usepackage[landscape]{geometry}
 \usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
 \usepackage{titlesec}
-
-\usepackage{pict2e}
-
-% Note: http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/pict2e/pict2e.pdf
-%
-% Description: Custom symbols designed for compact interpretation of identities
-%
-% Lower triangle filled or empty
-% Upper triangle filled or empty
-% Filled square
-% Diagonal
-
-\DeclareRobustCommand{\LR}{%
-  \begingroup
-  \setlength{\unitlength}{1ex}%
-  \begin{picture}(2.5,2.5)
-  \polyline(0,1.7)(1.7,0)(0,0)(0,1.7)
-  \end{picture}%
-  \endgroup
-}
-
-\DeclareRobustCommand{\LRF}{%
-  \begingroup
-  \setlength{\unitlength}{1ex}%
-  \begin{picture}(2.5,2.5)
-  \polygon*(0,1.7)(1.7,0)(0,0)(0,1.7)
-  \end{picture}%
-  \endgroup
-}
-
-\DeclareRobustCommand{\UR}{%
-  \begingroup
-  \setlength{\unitlength}{1ex}%
-  \begin{picture}(2.5,2.5)
-  \polyline(0,1.7)(1.7,1.7)(1.7,0)(0,1.7)
-  \end{picture}%
-  \endgroup
-}
-
-\DeclareRobustCommand{\URF}{%
-  \begingroup
-  \setlength{\unitlength}{1ex}%
-  \begin{picture}(2.5,2.5)
-  \polygon*(0,1.7)(1.7,1.7)(1.7,0)(0,1.7)
-  \end{picture}%
-  \endgroup
-}
-
-\DeclareRobustCommand{\SWH}{%
-  \begingroup
-  \setlength{\unitlength}{1ex}%
-  \begin{picture}(2.5,2.5)
-  \polygon(0,0)(1.7,0)(1.7,1.7)(0,1.7)(0,0)
-  \end{picture}%
-  \endgroup
-}
-
-\DeclareRobustCommand{\SBL}{%
-  \begingroup
-  \setlength{\unitlength}{1ex}%
-  \begin{picture}(2.5,2.5)
-  \polygon*(0,0)(1.7,0)(1.7,1.7)(0,1.7)(0,0)
-  \end{picture}%
-  \endgroup
-}
-
-\DeclareRobustCommand{\DIAG}{%
-  \begingroup
-  \setlength{\unitlength}{1ex}%
-  \begin{picture}(2.5,2.5)
-  \polyline(0,1.7)(1.7,0)
-  \end{picture}%
-  \endgroup
-}
-
-% rising/falling factorial
-\newcommand{\ffac}[1]{%
-  x^{\underline{#1}}%
-}
-\newcommand{\ffact}[2]{% 
-  {#1}^{\underline{#2}}%
-}
-\newcommand{\rfac}[1]{%
-  x^{\overline{#1}}%
-}
-\newcommand{\rfact}[2]{% 
-  {#1}^{\overline{#2}}%
-}
-
+\usepackage{custommacros}
 
 % Note: document width x height
 % https://www.overleaf.com/learn/latex/Page_size_and_margins
@@ -115,6 +27,7 @@
 \setlength{\textheight}{0.95 \paperheight}
 \setlength{\linewidth}{0.9 \paperwidth}
 \setlength{\textwidth}{0.95 \paperwidth}
+% \setlength{\mathindent}{0cm}
 
 \headheight = 0pt
 \voffset = 0pt
@@ -147,6 +60,9 @@
 
 \begin{multicols}{3}
 \section{Terminology}
+{
+%\everymath{\displaystyle}
+$
 \begin{array}{ll}
 H_n & \text{harmonic number} \\
     & H_n = \sum_{k=1}^n \frac{1}{k} = 1 + \frac{1}{2} + \cdots + \frac{1}{n} \\
@@ -163,6 +79,8 @@ D & \text{derivative operator} \\
  & \Delta f(n) = g(n) \implies \sum_{a}^b g(n) = f(b) - f(a) \\
  & \Delta f(n) = g(n) \implies \sum_a^b g(x) \delta x = -\sum_b^a g(x) \delta x  \\
 \end{array}
+$
+}
 
 \section{Finite calculus analogies with integral calculus}
 {
@@ -182,6 +100,7 @@ In the above $\delta x = 1$ (\href{https://math.stackexchange.com/a/235691}{refe
 \everymath{\displaystyle}
 Assume $m > 0$
 \begin{multicols}{2}
+$
 \begin{array}{ll}
 \ffac{-m} & = \frac{1}{(x+1)\cdots (x+m)}\\
 \ffac{m} & = (x-m+1) \cdots (x-1) x\\
@@ -191,8 +110,10 @@ Assume $m > 0$
 \ffac{-1} & = \frac{1}{x+1}\\
 \ffac{-2} & = \frac{1}{(x+1)(x+2)}\\
 \end{array}
+$
 \vfill\null
 \columnbreak
+$
 \begin{array}{l}
 \ffac{m+1} = \ffac{m} \ffact{(x-m)}{n} \text{  (law of exponents)}\\
 \rfac{-m} = \frac{1}{\rfact{(x-m)}{m}} = \frac{1}{\ffact{(x-1)}{m}} \\
@@ -201,15 +122,14 @@ Assume $m > 0$
 \rfact{x}{m} = (-1)^m\ffact{(-x)}{m} = \ffact{(x+m-1)}{m} = \frac{1}{\ffact{(x-1)}{-m}}\\
 \ffact{x}{m} = (-1)^m\rfact{(-x)}{m} = \rfact{(x-m+1)}{m} = \frac{1}{\rfact{(x+1)}{-m}}\\
 \end{array}
-\begin{array}{ll}
-
-\end{array}
+$
 \end{multicols}
 }
 
 \section{Summation properties}
-{\everymath{\displaystyle}
-
+{
+\everymath{\displaystyle}
+%\fontsize{8}{12}\selectfont
 Double-counting: $[k \in K] + [k\in K'] = [k\in K \cap K'] + [k\in K \cup K']$\\
 Interchanging order of summation: $\sum_{j} \sum_{k} a_{j,k} [P(j,k)] = \sum_{P(j,k)} a_{j,k} = \sum_{k} \sum_{j} a_{j,k} [P(j,k)]$
 Interchanging summation order \textbf{vanilla version}: $\sum_{j\in J} \sum_{k\in K} a_{j,k} = \sum_{\substack{j\in J\\k\in K}} a_{j,k} = \sum_{k\in K} \sum_{j\in J} a_{j,k}$\\
@@ -225,29 +145,35 @@ $\sum_{j=1}^{n} \sum_{k=j}^n a_{j,k} = \sum_{1\leq j\leq k\leq n} a_{j,k} =\sum_
 
 \section{Iverson bracket properties}
 
-$\URF + \LRF = \SBL + \DIAG$
-
-$ [1\leq j\leq k\leq n] + [1\leq k\leq j \leq n] = [1\leq j,k \leq n] + [1\leq j=k \leq n] $
-
-$\UR + \LR = \SBL - \DIAG$
-
-$ [1\leq j < k \leq n] + [1\leq k < j \leq n] = [1\leq j,k\leq n] - [1\leq j=k\leq n] $
+{
+%\everymath{\displaystyle}
+$
+\begin{array}{l}
+\URF + \LRF = \SBL + \DIAG \quad [ 1\leq j\leq k\leq n ] + [ 1\leq k\leq j \leq n ] = [ 1\leq j,k \leq n ] + [ 1\leq j=k \leq n ]\\\relax
+\UR + \LR = \SBL - \DIAG \quad [ 1\leq j < k \leq n ] + [ 1\leq k < j \leq n ] = [ 1\leq j,k\leq n ] - [ 1\leq j=k\leq n ]\\\relax
+\max(a,b)=a\cdot[a>b]+b\cdot[b\geq a]\\\relax
+\min(a,b)=a\cdot[a<b]+b\cdot[b\leq a]\\\relax
+\end{array}
+$
+}
 
 \section{Summation by parts}
 {\everymath{\displaystyle}
+$
 \begin{array}{ll}
 \text{Difference of a product} & \Delta(u\cdot v) = u\Delta v + E\ v\Delta u\\
 \text{Summation by parts}      & \sum u\cdot \Delta v = u v - \sum E\ v\Delta u\\
 & E \text{ is applied only to the term immediately after it} 
 \end{array}
+$
 }
 
 \section{Finite difference table}
-% array is already in math mode
 {
 \everymath{\displaystyle}
 \bgroup
 \def\arraystretch{1.6}
+$
 \begin{array}{|r|l|l|}
 \hline
 \mathbf{f(x)} & \mathbf{\Delta f(x)} & \textbf{note}\\
@@ -271,6 +197,7 @@ u + v & \Delta u + \Delta v & \\
 \ffact{c}{x} & \frac{\ffact{c}{x+2}}{c-x} & \\
 \hline
 \end{array}
+$
 \egroup
 }
 \\
@@ -280,6 +207,7 @@ u + v & \Delta u + \Delta v & \\
 \everymath{\displaystyle}
 \bgroup
 \renewcommand{\arraystretch}{2}
+$
 \begin{array}{|l|l|l|}
 \hline
 \text{sum law} & \text{product law} & \text{name}\\
@@ -299,6 +227,7 @@ u + v & \Delta u + \Delta v & \\
 \sum_{k\in K} 1 = |K| & \prod_{k\in K} c = c^{|K|} & \\
 \hline
 \end{array}
+$
 \egroup
 }
 
