@@ -1,0 +1,37 @@
+\documentclass[a4paper,10pt,fleqn]{article}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+
+\setlength{\mathindent}{0cm}
+\begin{document}
+\newcommand{\ffac}[1]{%
+  x^{\underline{#1}}%
+}
+\newcommand{\ffact}[2]{% 
+  {#1}^{\underline{#2}}%
+}
+\everymath{\displaystyle}
+
+\textbf{Problem 2.27}
+
+$
+\begin{array}{ll}\\
+  & \Delta \ffact{c}{x} = \ffact{c}{x+1} - \ffact{c}{x}\\
+& = \ffact{c}{x} ((c-x)-1) = \frac{c!}{(c-x)!} (c-x-1)\\
+& = \frac{c!}{(c-x-2)!} \frac{1}{(c-x-1)(c-x)} (c-x-1)\\
+& = \frac{\ffact{c}{x+2}}{(c-x)}
+\\
+& c=-2 \implies \Delta \left( -\ffact{(-2)}{x-2} \right) = \frac{\ffact{-2}{x}}{x} \\
+\\
+S & = \sum_{k=1}^n 1 \cdot \Delta \ffact{-(-2)}{k-2} = \\
+  & = \left. \ffact{-(-2)}{k-2} \right|_{1}^{n+1} - \sum_{k=1}^n \ffact{-(-2)}{k-1} \cdot \Delta 1 \\
+  & = \left. \ffact{-(-2)}{k-2} \right|_{1}^{n+1} - \sum_{k=1}^n \ffact{-(-2)}{k-1} \cdot 0 \\  
+  & = \left. \ffact{-(-2)}{k} \right|_{-1}^{n-1} = \left. \ffact{(-2)}{k} \right|_{n-1}^{-1} \\
+  & = \ffact{(-2)}{-1} - \ffact{(-2)}{n-1} \\
+  & = \frac{1}{(-2)+1} - (-1-n)(-n)(-n+1)\cdots 2 = -1+(-1)^n n!\\
+\end{array}
+$
+
+\end{document}
+

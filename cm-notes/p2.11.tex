@@ -1,0 +1,32 @@
+% \documentclass[12pt,a4paper]{report}
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage{amsmath}
+\setlength{\mathindent}{0cm}
+\begin{document}
+
+Problem 2.11 (page 63).
+
+$E$ is the shift operator.
+
+\begin{align}
+  & \hskip 4pt \sum \Delta a_k b_k\\
+= & \sum_{0\leq k < n} (a_{k+1} - a_k)b_k \\
+= & \sum_{0\leq k < n} a_{k+1} b_k - a_k b_k \\
+= & \sum_{0\leq k < n} a_{k+1} b_k - \sum_{0\leq k < n} a_k b_k \\
+= & \sum_{0\leq k < n} a_{k+1} b_k - \sum_{0\leq k+1 < n} a_{k+1} b_{k+1} \\
+= & \sum_{0\leq k < n} a_{k+1} b_k - \sum_{-1\leq k < n-1} a_{k+1} b_{k+1} \\
+= & \sum_{0\leq k < n} a_{k+1} b_k - \sum_{0\leq k < n} a_{k+1} b_{k+1} + (a_n b_n - a_0 b_0) \\
+= & - \sum_{0\leq k < n} a_{k+1} (b_{k+1} - b_k) + (a_n b_n - a_0 b_0) \\
+= & - \sum_{0\leq k < n} a_{k+1} \Delta b_{k} + \left.(a_k b_k)\right|_0^n  \\
+= & \left.(a_k b_k)\right|_0^n - \sum_{0\leq k < n} E a_k \Delta b_{k} \\
+\end{align}
+%
+Step (5) will shift $k \to k+1$. \\
+Step (6) will re-adjust the bounds. \\
+Step (7) splits off the first term, adds an addition term, and then subtracts that additional term. \\
+Step (9) rewrites the outer difference as an evaluation, also rewrites the sum using the difference operator. \\
+Step (10) uses rewrites the expression using the shift operator.\\
+\\
+\textbf{Note:} the evaluation in (10) has its upper bound 1 greater than the initial upper-bound of the original sum in (1).
+
+\end{document}

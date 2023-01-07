@@ -1,0 +1,18 @@
+% \documentclass[12pt,a4paper]{report}
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage{amsmath}
+\setlength{\mathindent}{0cm}
+\begin{document}
+
+\begin{align*}
+& u(k) = 2k+1 \implies \Delta u(k) = (2k+3) - (2k+1) = 2 \\
+& \Delta v(k) = \frac{1}{k(k+1)} = (k-1)^{\underline{-2}} \\
+& \sum \Delta v(k) = \sum (k-1)^{\underline{-2}} = \frac{(k-1)^{\underline{-2+1}}}{-2+1} = \frac{(k- 1)^{\underline{-1}}}{-1} = -\frac{1}{k} = v(k) \\ 
+\hline \\
+& \sum_{k=1}^n u(k) \Delta v(k) = \left.(u(k)v(k))\right|_1^n - \sum_{k=1}^n E v(k)\Delta u(k) \\
+& \sum_{k=1}^n u(k) \Delta v(k) = \left.\left(-\frac{2k+1}{k}\right)\right|_1^{n+1} - \sum_{k=1}^n 2 \cdot \left(-\frac{1}{k+1}\right) = \\
+& \left.\left(2 + \frac{1}{k} \right)\right|_{n+1}^{1} - 2 + 2 \sum_{k=2}^{n+1} \frac{1}{k} = \\
+& \frac{1}{n+1} - 1 + 2H_n \\
+\end{align*}
+
+\end{document}

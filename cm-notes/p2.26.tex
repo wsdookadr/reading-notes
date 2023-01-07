@@ -1,0 +1,62 @@
+% \documentclass[12pt,a4paper]{report}
+\documentclass[a4paper,10pt,fleqn]{article}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+
+\setlength{\mathindent}{0cm}
+\begin{document}
+\newcommand{\ffac}[1]{%
+  x^{\underline{#1}}%
+}
+\newcommand{\ffact}[2]{% 
+  {#1}^{\underline{#2}}%
+}
+
+\everymath{\displaystyle}
+
+\textbf{Problem 2.26}
+
+Notation: $T = \prod_{1\leq k \leq n} a_k$
+
+Express $P=\prod_{1\leq j \leq k \leq n} a_j a_k$ in terms of $T$.
+
+By symmetry, the indices can be renamed $P=\prod_{1\leq j \leq k \leq n} a_j a_k=\prod_{1\leq k \leq j \leq n} a_j a_k$
+
+Converting the Iverson bracket identity
+
+$ [1\leq j\leq k\leq n] + [1\leq k\leq j \leq n] = [1\leq j,k \leq n] + [1\leq j=k \leq n] $
+
+to products, yields:
+
+\begin{array}{rll}
+\prod_{1\leq j \leq k \leq n} a_j a_k \cdot \prod_{1\leq k \leq j \leq n} a_j a_k & = &
+ \prod_{1\leq j,k \leq n} a_j a_k \cdot \prod_{1\leq k=j \leq n} a_j a_k \\
+P^2 & = & \underbrace{\prod_{1\leq j,k \leq n} a_j a_k}_{A} \cdot \underbrace{\prod_{1\leq k=j \leq n} a_j a_k}_{B} \\
+\end{array}
+
+\begin{multicols}{2}
+
+\begin{array}{ll}
+A & = \prod_{1\leq j,k \leq n} a_j a_k \\
+  & = \prod_{1\leq j\leq n} \prod_{1\leq k\leq n} a_j a_k\\
+  & = \prod_{1\leq j\leq n} a_j^n \prod_{1\leq k\leq n} a_k \\
+  & = \prod_{1\leq j\leq n} a_j^n \cdot T\\
+  & = T^n \prod_{1\leq j\leq n} a_j^n \\
+  & = T^n \left(\prod_{1\leq j\leq n} a_j\right)^n \\  
+  & = T^n T^n = T^{2n}\\
+\end{array}
+
+\columnbreak
+
+\begin{array}{ll}
+B & = \prod_{1\leq j=k \leq n} a_j a_k \\
+  & = \prod_{1\leq j \leq n} a_j^2 \\
+  & = \left(\prod_{1\leq j \leq n} a_j\right)^2 = T^2 \\
+\end{array}
+
+\end{multicols}
+
+$P^2 = T^{2(n+1)} \iff P = T^{n+1}$
+
+\end{document}
